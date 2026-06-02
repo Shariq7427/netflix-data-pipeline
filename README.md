@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![Architecture](images/architecture.png)
+![Architecture](images/arcitecture.png)
 
 ## Dashboard
 
