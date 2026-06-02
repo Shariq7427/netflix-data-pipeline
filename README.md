@@ -1,5 +1,13 @@
 # Netflix Data Processing Pipeline
 
+## Architecture
+
+![Architecture](images/architecture.png)
+
+## Dashboard
+
+![Dashboard](images/dashboard-preview.png)
+
 ## Team Members
 
 - Shariq Ali Mohammad
