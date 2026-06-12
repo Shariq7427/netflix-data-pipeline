@@ -13,6 +13,8 @@
 - Shariq Ali Mohammad
 - Shiva Sai Addanki
 - Sajan
+- Sai vinay pyatla
+- Sankara vamsi raju sarikonda
 
 ## Technologies Used
 
