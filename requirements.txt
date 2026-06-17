@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 kafka-python
 pyspark
 apache-airflow
 psycopg2-binary
 pandas
+=======
+kafka-python
+pyspark
+apache-airflow
+psycopg2-binary
+pandas
+streamlit
+plotly
+numpy
+>>>>>>> e973bbd (Added Netflix Streaming Analytics Dashboard)
