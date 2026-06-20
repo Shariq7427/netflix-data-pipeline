@@ -6,7 +6,7 @@
 
 ## Dashboard Preview
 
-![Dashboard](images/dashboard-preview.png)
+![Dashboard](https://raw.githubusercontent.com/Shariq7427/netflix-data-pipeline/main/images/dashboard-preview.png)
 
 ## Team Members
 
