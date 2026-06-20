@@ -1,347 +1,384 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
-import seaborn as sns
-import matplotlib.pyplot as plt
+import os
 
-# -------------------------------------------------
+# =====================================================
 # PAGE CONFIG
-# -------------------------------------------------
+# =====================================================
 
 st.set_page_config(
-    page_title="Netflix Streaming Analytics",
+    page_title="Netflix Analytics Dashboard",
     page_icon="🎬",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
-# -------------------------------------------------
-# CUSTOM CSS
-# -------------------------------------------------
+# =====================================================
+# LOAD DATA
+# =====================================================
 
-st.markdown("""
-<style>
+@st.cache_data
+def load_data():
 
-[data-testid="stAppViewContainer"]{
-    background-color:#0b0f19;
-    color:white;
-}
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    file_path = os.path.join(base_dir, "data", "netflix_titles.csv")
 
-[data-testid="stSidebar"]{
-    background-color:#111827;
-}
+    df = pd.read_csv(file_path)
 
-.metric-card{
-    background:#161b22;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    border:1px solid #222;
-}
+    df["country"] = df["country"].fillna("Unknown")
+    df["listed_in"] = df["listed_in"].fillna("Unknown")
+    df["rating"] = df["rating"].fillna("Unknown")
+    df["director"] = df["director"].fillna("Unknown")
 
-.big-title{
-    font-size:38px;
-    font-weight:bold;
-    color:white;
-}
+    return df
 
-</style>
-""", unsafe_allow_html=True)
 
-# -------------------------------------------------
+df = load_data()
+
+# =====================================================
+# ALL COUNTRIES
+# =====================================================
+
+all_countries = []
+
+for countries in df["country"]:
+    all_countries.extend(
+        [c.strip() for c in str(countries).split(",")]
+    )
+
+all_countries = sorted(list(set(all_countries)))
+
+# =====================================================
+# ALL GENRES
+# =====================================================
+
+all_genres = []
+
+for genres in df["listed_in"]:
+    all_genres.extend(
+        [g.strip() for g in str(genres).split(",")]
+    )
+
+all_genres = sorted(list(set(all_genres)))
+
+# =====================================================
 # SIDEBAR
-# -------------------------------------------------
+# =====================================================
 
-with st.sidebar:
+st.sidebar.title("🎬 Netflix Filters")
 
-    st.markdown(
-        "<h1 style='color:#E50914'>NETFLIX</h1>",
-        unsafe_allow_html=True
-    )
-
-    st.markdown("---")
-
-    st.button("🏠 Overview")
-    st.button("📊 Content Performance")
-    st.button("👥 User Activity")
-    st.button("📱 Devices")
-    st.button("🌍 Geography")
-    st.button("💳 Subscriptions")
-    st.button("📑 Reports")
-    st.button("⚙ Settings")
-
-# -------------------------------------------------
-# HEADER
-# -------------------------------------------------
-
-st.markdown(
-"""
-<div class='big-title'>
-STREAMING ANALYTICS DASHBOARD
-</div>
-""",
-unsafe_allow_html=True
+selected_countries = st.sidebar.multiselect(
+    "Countries",
+    all_countries
 )
 
-st.caption(
-    "Real-time insights into user behavior and content performance"
+selected_genres = st.sidebar.multiselect(
+    "Genres",
+    all_genres
 )
 
-# -------------------------------------------------
-# DATA
-# -------------------------------------------------
+selected_type = st.sidebar.multiselect(
+    "Content Type",
+    df["type"].unique(),
+    default=df["type"].unique()
+)
 
-try:
-    df = pd.read_csv("netflix_dashboard_data.csv")
-except:
-    df = pd.read_csv("./netflix_dashboard_data.csv")
+selected_rating = st.sidebar.multiselect(
+    "Ratings",
+    sorted(df["rating"].unique())
+)
 
-# -------------------------------------------------
-# KPI CARDS
-# -------------------------------------------------
+# =====================================================
+# FILTERING
+# =====================================================
 
-c1,c2,c3,c4,c5 = st.columns(5)
+filtered_df = df.copy()
 
-cards = [
-("⏱","Total Watch Time","12,450"),
-("👥","Active Users","8,752"),
-("👁","Total Views","24,350"),
-("🕒","Avg Watch Time","67.3"),
-("📈","Completion Rate","78.6%")
-]
+if selected_countries:
 
-for col,data in zip([c1,c2,c3,c4,c5],cards):
-
-    icon,title,val = data
-
-    col.markdown(f"""
-    <div class='metric-card'>
-        <h2>{icon}</h2>
-        <h4>{title}</h4>
-        <h2>{val}</h2>
-    </div>
-    """,
-    unsafe_allow_html=True)
-
-st.write("")
-
-# -------------------------------------------------
-# ROW 1
-# -------------------------------------------------
-
-col1,col2,col3 = st.columns([1.2,1.2,1])
-
-# -------------------------
-# MOST WATCHED CONTENT
-# -------------------------
-
-with col1:
-
-    st.subheader("Most Watched Content")
-
-    content = pd.DataFrame({
-        "title":[
-            "Stranger Things",
-            "Money Heist",
-            "Wednesday",
-            "The Witcher",
-            "Bridgerton"
-        ],
-        "views":[2450,2150,1890,1650,1230]
-    })
-
-    fig = px.bar(
-        content,
-        x="views",
-        y="title",
-        orientation="h",
-        template="plotly_dark",
-        color_discrete_sequence=["#E50914"]
-    )
-
-    fig.update_layout(
-        paper_bgcolor="#161b22",
-        plot_bgcolor="#161b22"
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-
-# -------------------------
-# WATCH TIME TREND
-# -------------------------
-
-with col2:
-
-    st.subheader("Watch Time Over Time")
-
-    trend = pd.DataFrame({
-        "Day":range(1,32),
-        "Hours":np.random.randint(
-            900,
-            2200,
-            31
+    filtered_df = filtered_df[
+        filtered_df["country"].apply(
+            lambda x: any(
+                country in [c.strip() for c in str(x).split(",")]
+                for country in selected_countries
+            )
         )
-    })
+    ]
 
-    fig = px.line(
-        trend,
-        x="Day",
-        y="Hours",
-        template="plotly_dark"
-    )
+if selected_genres:
 
-    fig.update_traces(
-        line_color="#E50914"
-    )
+    filtered_df = filtered_df[
+        filtered_df["listed_in"].apply(
+            lambda x: any(
+                genre in [g.strip() for g in str(x).split(",")]
+                for genre in selected_genres
+            )
+        )
+    ]
 
-    fig.update_layout(
-        paper_bgcolor="#161b22",
-        plot_bgcolor="#161b22"
-    )
+if selected_type:
 
+    filtered_df = filtered_df[
+        filtered_df["type"].isin(selected_type)
+    ]
+
+if selected_rating:
+
+    filtered_df = filtered_df[
+        filtered_df["rating"].isin(selected_rating)
+    ]
+
+# =====================================================
+# HEADER
+# =====================================================
+
+st.title("🎬 Netflix Analytics Dashboard")
+st.markdown(
+    "Interactive dashboard using the Netflix Kaggle Dataset"
+)
+
+# =====================================================
+# KPI CARDS
+# =====================================================
+
+total_titles = len(filtered_df)
+
+movies = len(
+    filtered_df[
+        filtered_df["type"] == "Movie"
+    ]
+)
+
+tv_shows = len(
+    filtered_df[
+        filtered_df["type"] == "TV Show"
+    ]
+)
+
+countries_count = len(all_countries)
+
+col1, col2, col3, col4 = st.columns(4)
+
+col1.metric("Total Titles", f"{total_titles:,}")
+col2.metric("Movies", f"{movies:,}")
+col3.metric("TV Shows", f"{tv_shows:,}")
+col4.metric("Countries", countries_count)
+
+st.divider()
+
+# =====================================================
+# MOVIES VS TV SHOWS
+# =====================================================
+
+type_counts = (
+    filtered_df["type"]
+    .value_counts()
+    .reset_index()
+)
+
+type_counts.columns = ["Type", "Count"]
+
+fig_type = px.pie(
+    type_counts,
+    names="Type",
+    values="Count",
+    hole=0.5,
+    title="Movies vs TV Shows"
+)
+
+# =====================================================
+# TOP COUNTRIES
+# =====================================================
+
+country_df = filtered_df.copy()
+
+country_df["country"] = (
+    country_df["country"]
+    .str.split(",")
+)
+
+country_df = country_df.explode("country")
+
+country_df["country"] = (
+    country_df["country"]
+    .str.strip()
+)
+
+country_counts = (
+    country_df["country"]
+    .value_counts()
+    .head(15)
+    .reset_index()
+)
+
+country_counts.columns = ["Country", "Count"]
+
+fig_country = px.bar(
+    country_counts,
+    x="Country",
+    y="Count",
+    title="Top Countries by Content"
+)
+
+left, right = st.columns(2)
+
+with left:
     st.plotly_chart(
-        fig,
+        fig_type,
         use_container_width=True
     )
 
-# -------------------------
-# DONUT CHART
-# -------------------------
-
-with col3:
-
-    st.subheader("Top Genres")
-
-    genre = pd.DataFrame({
-        "Genre":[
-            "Drama",
-            "Thriller",
-            "Comedy",
-            "Action",
-            "Documentary"
-        ],
-        "Share":[35,25,15,15,10]
-    })
-
-    fig = px.pie(
-        genre,
-        names="Genre",
-        values="Share",
-        hole=0.55,
-        template="plotly_dark"
-    )
-
-    fig.update_layout(
-        paper_bgcolor="#161b22"
-    )
-
+with right:
     st.plotly_chart(
-        fig,
+        fig_country,
         use_container_width=True
     )
 
-# -------------------------------------------------
-# ROW 2
-# -------------------------------------------------
+# =====================================================
+# RELEASE YEAR TREND
+# =====================================================
 
-col4,col5,col6 = st.columns([1.2,1,1])
+year_counts = (
+    filtered_df["release_year"]
+    .value_counts()
+    .sort_index()
+    .reset_index()
+)
 
-# -------------------------
-# HEATMAP
-# -------------------------
+year_counts.columns = ["Year", "Count"]
 
-with col4:
+fig_year = px.line(
+    year_counts,
+    x="Year",
+    y="Count",
+    markers=True,
+    title="Netflix Content Growth Over Time"
+)
 
-    st.subheader(
-        "User Activity Heatmap"
-    )
+st.plotly_chart(
+    fig_year,
+    use_container_width=True
+)
 
-    heat = np.random.randint(
-        0,
-        100,
-        size=(7,24)
-    )
+# =====================================================
+# TOP GENRES
+# =====================================================
 
-    fig,ax = plt.subplots(
-        figsize=(8,3)
-    )
+genre_df = filtered_df.copy()
 
-    sns.heatmap(
-        heat,
-        cmap="Reds",
-        ax=ax
-    )
+genre_df["listed_in"] = (
+    genre_df["listed_in"]
+    .str.split(",")
+)
 
-    st.pyplot(fig)
+genre_df = genre_df.explode("listed_in")
 
-# -------------------------
-# DEVICE USAGE
-# -------------------------
+genre_df["listed_in"] = (
+    genre_df["listed_in"]
+    .str.strip()
+)
 
-with col5:
+genre_counts = (
+    genre_df["listed_in"]
+    .value_counts()
+    .head(15)
+    .reset_index()
+)
 
-    st.subheader("Devices Used")
+genre_counts.columns = ["Genre", "Count"]
 
-    d1,d2 = st.columns(2)
+fig_genre = px.bar(
+    genre_counts,
+    x="Genre",
+    y="Count",
+    title="Top Genres"
+)
 
-    d1.metric("📱 Mobile","45%")
-    d1.metric("💻 Desktop","15%")
+st.plotly_chart(
+    fig_genre,
+    use_container_width=True
+)
 
-    d2.metric("📺 TV","30%")
-    d2.metric("📲 Tablet","10%")
+# =====================================================
+# RATINGS
+# =====================================================
 
-# -------------------------
-# COUNTRY MAP
-# -------------------------
+rating_counts = (
+    filtered_df["rating"]
+    .value_counts()
+    .head(15)
+    .reset_index()
+)
 
-with col6:
+rating_counts.columns = ["Rating", "Count"]
 
-    st.subheader("Top Countries")
+fig_rating = px.bar(
+    rating_counts,
+    x="Rating",
+    y="Count",
+    title="Ratings Distribution"
+)
 
-    country = pd.DataFrame({
-        "country":[
-            "United States",
-            "India",
-            "Brazil",
-            "United Kingdom",
-            "Canada"
-        ],
-        "views":[8200,4600,2900,2100,1700]
-    })
+st.plotly_chart(
+    fig_rating,
+    use_container_width=True
+)
 
-    fig = px.choropleth(
-        country,
-        locations="country",
-        locationmode="country names",
-        color="views",
-        template="plotly_dark"
-    )
+# =====================================================
+# TOP DIRECTORS
+# =====================================================
 
-    fig.update_layout(
-        paper_bgcolor="#161b22"
-    )
+director_counts = (
+    filtered_df["director"]
+    .value_counts()
+    .head(15)
+    .reset_index()
+)
 
-    st.plotly_chart(
-        fig,
+director_counts.columns = ["Director", "Count"]
+
+fig_director = px.bar(
+    director_counts,
+    x="Director",
+    y="Count",
+    title="Top Directors"
+)
+
+st.plotly_chart(
+    fig_director,
+    use_container_width=True
+)
+
+# =====================================================
+# SEARCH
+# =====================================================
+
+st.subheader("🔍 Search Netflix Titles")
+
+search = st.text_input("Search Title")
+
+if search:
+
+    results = filtered_df[
+        filtered_df["title"]
+        .str.contains(
+            search,
+            case=False,
+            na=False
+        )
+    ]
+
+    st.dataframe(
+        results,
         use_container_width=True
     )
 
-# -------------------------------------------------
-# INSIGHTS
-# -------------------------------------------------
+# =====================================================
+# DATASET VIEW
+# =====================================================
 
-st.markdown("---")
-
-st.subheader("Key Insights")
-
-i1,i2,i3,i4,i5 = st.columns(5)
-
-i1.success("Watch time +12.5%")
-i2.info("Weekend engagement +23%")
-i3.info("Drama drives 35%")
-i4.warning("Mobile contributes 45%")
-i5.success("Completion rate +4.6%")
+with st.expander("View Dataset"):
+    st.dataframe(
+        filtered_df,
+        use_container_width=True
+    )
