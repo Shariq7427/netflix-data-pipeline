@@ -4,7 +4,7 @@
 
 ![Architecture](images/arcitecture.png)
 
-## Dashboard
+## Dashboard Preview
 
 ![Dashboard](images/dashboard-preview.png)
 
