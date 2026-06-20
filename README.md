@@ -1,12 +1,19 @@
+# Netflix Analytics Dashboard
+
+## Dashboard Preview
+
+![Netflix Dashboard](images/dashboard.png)
+
+---
 # Netflix Data Processing Pipeline
 
 ## Architecture
 
 ![Architecture](images/arcitecture.png)
 
-## Dashboard Preview
+## Dashboard
 
-![Dashboard](<img width="1918" height="967" alt="dashboard-preview" src="https://github.com/user-attachments/assets/bb4ea3d9-b176-42ed-b62f-05d94dee458e"/>)
+![Dashboard](images/dashboard-preview.png)
 
 ## Team Members
 
