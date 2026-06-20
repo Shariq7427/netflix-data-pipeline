@@ -32,3 +32,33 @@ Netflix Users
 → Spark Streaming
 → PostgreSQL
 → Dashboard
+
+# Netflix Analytics Dashboard
+
+## Features
+
+- Interactive Genre Filters
+- Country Analytics (100+ Countries)
+- Movie vs TV Show Analysis
+- Ratings Distribution
+- Release Year Trends
+- Top Directors
+- Search Netflix Titles
+
+## Technologies
+
+- Python
+- Pandas
+- Streamlit
+- Plotly
+- Kafka
+- Spark
+- Airflow
+- PostgreSQL
+
+## Run
+
+```bash
+pip install -r requirements.txt
+streamlit run dashboard/app.py
+```
