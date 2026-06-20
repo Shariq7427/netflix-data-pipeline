@@ -1,9 +1,5 @@
 # Netflix Analytics Dashboard
 
-## Dashboard Preview
-
-![Netflix Dashboard](images/dashboard.png)
-
 ---
 # Netflix Data Processing Pipeline
 
@@ -13,7 +9,7 @@
 
 ## Dashboard
 
-![Dashboard](images/dashboard-preview.png)
+![Dashboard](images/dashboard-preview1.png)
 
 ## Team Members
 
