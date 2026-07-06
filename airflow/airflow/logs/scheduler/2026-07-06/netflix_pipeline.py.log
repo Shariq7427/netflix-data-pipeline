@@ -2582,3 +2582,45 @@
 [2026-07-06T23:34:42.350+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:34:42.350+0000] {dag.py:3089} INFO - Sync 1 DAGs
 [2026-07-06T23:34:42.370+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:34:42.369+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
 [2026-07-06T23:34:42.400+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.151 seconds
+[2026-07-06T23:35:12.836+0000] {processor.py:161} INFO - Started process (PID=468) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:12.841+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:35:12.847+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:12.847+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:12.974+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:13.046+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:13.045+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:35:13.088+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:13.088+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:35:13.127+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.307 seconds
+[2026-07-06T23:35:43.612+0000] {processor.py:161} INFO - Started process (PID=469) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:43.614+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:35:43.618+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:43.617+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:43.667+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:35:43.717+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:43.717+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:35:43.741+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:35:43.741+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:35:43.774+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.171 seconds
+[2026-07-06T23:36:13.952+0000] {processor.py:161} INFO - Started process (PID=470) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:13.954+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:36:13.958+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:13.957+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:13.997+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:14.049+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:14.048+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:36:14.072+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:14.071+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:36:14.114+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.172 seconds
+[2026-07-06T23:36:44.419+0000] {processor.py:161} INFO - Started process (PID=471) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:44.421+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:36:44.425+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:44.424+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:44.477+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:36:44.533+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:44.532+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:36:44.561+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:36:44.560+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:36:44.608+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.199 seconds
+[2026-07-06T23:37:14.739+0000] {processor.py:161} INFO - Started process (PID=472) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:14.741+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:37:14.745+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:14.744+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:14.797+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:14.852+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:14.851+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:37:14.872+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:14.872+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:37:14.900+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.170 seconds
+[2026-07-06T23:37:45.253+0000] {processor.py:161} INFO - Started process (PID=473) to work on /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:45.255+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/netflix_pipeline.py for tasks to queue
+[2026-07-06T23:37:45.259+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:45.258+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:45.309+0000] {processor.py:840} INFO - DAG(s) 'netflix_data_pipeline' retrieved from /opt/airflow/dags/netflix_pipeline.py
+[2026-07-06T23:37:45.372+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:45.372+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-07-06T23:37:45.397+0000] {logging_mixin.py:188} INFO - [2026-07-06T23:37:45.396+0000] {dag.py:3947} INFO - Setting next_dagrun for netflix_data_pipeline to None, run_after=None
+[2026-07-06T23:37:45.448+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/netflix_pipeline.py took 0.206 seconds
