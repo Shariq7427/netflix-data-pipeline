@@ -1,24 +1,23 @@
 # 🎬 Netflix Data Engineering Pipeline & Analytics Dashboard
 
-A complete end-to-end **Data Engineering** project that demonstrates how Netflix data can be ingested, transformed, orchestrated, stored, and visualized using modern data engineering tools.
+A complete end-to-end **Data Engineering** project demonstrating how Netflix data can be ingested, transformed, orchestrated, stored, and visualized using modern data engineering technologies.
 
-The project simulates a real-world data pipeline by integrating **Apache Kafka**, **Apache Spark**, **Apache Airflow**, **PostgreSQL**, **Docker**, and **Power BI** to process Netflix content data and generate business insights through interactive dashboards.
+This project integrates **Apache Spark**, **Apache Kafka**, **Apache Airflow**, **PostgreSQL**, **Docker**, **Power BI**, and **Streamlit** to build a scalable ETL pipeline and interactive analytics dashboards.
 
 ---
 
 # 📌 Project Overview
 
-This project demonstrates the complete lifecycle of a modern data engineering pipeline.
-
-The pipeline performs:
+The project simulates a real-world data engineering workflow consisting of:
 
 - Data Ingestion using Apache Spark
 - Data Cleaning & Transformation
-- Workflow Scheduling using Apache Airflow
+- Workflow Orchestration using Apache Airflow
 - SQL Layer using PostgreSQL
-- Containerization using Docker
-- Interactive Business Intelligence Dashboard using Power BI
-- Live Analytics Dashboard using Streamlit
+- Kafka-based Streaming Architecture
+- Docker Containerization
+- Business Intelligence Dashboard using Power BI
+- Interactive Live Dashboard using Streamlit
 
 ---
 
@@ -39,24 +38,24 @@ The pipeline performs:
 | Apache Spark | Data Processing |
 | Apache Kafka | Data Streaming |
 | Apache Airflow | Workflow Orchestration |
-| PostgreSQL | SQL Data Warehouse |
+| PostgreSQL | SQL Database |
 | Docker | Containerization |
 | Power BI | Business Intelligence Dashboard |
-| Streamlit | Live Dashboard |
-| Python | Pipeline Development |
+| Streamlit | Interactive Dashboard |
+| Python | Backend Development |
 | Pandas | Data Analysis |
 
 ---
 
-# 🏗 System Architecture
+# 🏗 Project Architecture
 
-The complete architecture of the project is shown below.
+The overall architecture of the data engineering pipeline is shown below.
 
-![Architecture](images/architecture.png)
+![Architecture](images/arcitecture.png)
 
 ---
 
-# 🔄 Complete Pipeline Workflow
+# 🔄 Pipeline Workflow
 
 ```
 Netflix Dataset
@@ -71,10 +70,10 @@ Data Cleaning & Transformation
 Apache Kafka
         │
         ▼
-Apache Airflow Scheduling
+Apache Airflow
         │
         ▼
-PostgreSQL Database
+PostgreSQL
         │
         ▼
 Power BI Dashboard
@@ -125,39 +124,39 @@ netflix-data-pipeline/
 
 ---
 
-# ⚙ Data Engineering Pipeline
+# ⚙️ Data Engineering Pipeline
 
-## Phase 1 — Data Ingestion
+## Phase 1 – Data Ingestion
 
-The Netflix dataset is loaded using Apache Spark.
+Apache Spark loads the Netflix dataset.
 
-Operations performed
+### Tasks
 
 - Read CSV Dataset
 - Infer Schema
 - Display Records
-- Store Data as Parquet
+- Convert CSV to Parquet
 
 ---
 
-## Phase 2 — Data Transformation
+## Phase 2 – Data Transformation
 
-Spark performs preprocessing before analytics.
+Apache Spark performs preprocessing.
 
-Operations
+### Tasks
 
 - Remove Duplicate Records
-- Remove Null Values
-- Trim Text Columns
+- Handle Missing Values
+- Trim String Columns
 - Convert Date Formats
 - Cast Data Types
 - Store Cleaned Dataset
 
 ---
 
-## Phase 3 — Apache Kafka
+## Phase 3 – Apache Kafka
 
-Kafka is configured to simulate streaming architecture.
+Kafka simulates a streaming data pipeline.
 
 Components
 
@@ -167,69 +166,65 @@ Components
 
 ---
 
-## Phase 4 — Apache Airflow
+## Phase 4 – Apache Airflow
 
-Airflow orchestrates the Spark pipeline using DAGs.
+Airflow orchestrates the Spark ETL workflow.
 
 Pipeline Tasks
 
 - Data Ingestion
 - Data Transformation
 
-Airflow manages scheduling, execution, monitoring, and dependency management of the ETL workflow.
+Airflow manages scheduling, execution, monitoring, and dependency management of the ETL pipeline.
 
 ---
 
-## Phase 5 — SQL Layer
+## Phase 5 – SQL Layer
 
-The transformed dataset is loaded into PostgreSQL.
+The processed data is stored in PostgreSQL.
 
-Implemented SQL
+Implemented Features
 
 - Database Creation
 - Table Creation
-- Structured Storage
-- SQL Analytics Support
+- Structured Data Storage
+- SQL Query Support
 
 ---
 
-## Phase 6 — Dashboard Layer
+## Phase 6 – Dashboard Layer
 
-Processed data is visualized using Power BI and Streamlit.
+Business insights are generated using both Power BI and Streamlit.
 
 ---
 
-# 📊 Live Dashboard
+# 📊 Streamlit Live Dashboard
 
-The project includes a **Streamlit Live Dashboard** for interactive exploration of the Netflix dataset.
+The project includes an interactive Streamlit dashboard for exploring Netflix content.
 
 ### Features
 
 - Search Netflix Titles
 - Genre Analysis
 - Country Analysis
+- Movie vs TV Show Distribution
 - Rating Distribution
-- Movie vs TV Shows
 - Release Year Trends
 - Interactive Charts
 
 ### Live Dashboard Preview
 
-> *(Replace with your Streamlit dashboard screenshot)*
-
-![Live Dashboard](dashboard/dashboard_preview.png)
+![Live Dashboard](images/dashboard-preview1.png)
 
 ---
 
 # 📈 Power BI Dashboard
 
-The Power BI dashboard provides business insights using interactive visualizations.
+The Power BI dashboard provides business intelligence and interactive reporting.
 
 ---
 
 ## Dashboard Overview
-
-A complete overview of the Netflix dataset.
 
 ![Dashboard Overview](powerbi/screenshots/dashboard_overview.png.png)
 
@@ -237,13 +232,13 @@ A complete overview of the Netflix dataset.
 
 ## KPI Cards
 
-Key business metrics include:
+The dashboard displays key metrics including:
 
 - Total Titles
 - Movies
 - TV Shows
-- Directors
 - Countries
+- Directors
 
 ![KPI Cards](powerbi/screenshots/kpi_cards.png.png)
 
@@ -251,13 +246,13 @@ Key business metrics include:
 
 ## Dashboard Charts
 
-Interactive charts include
+The dashboard includes visualizations for:
 
 - Movie vs TV Shows
-- Country Distribution
-- Rating Analysis
-- Release Year Trends
 - Genre Distribution
+- Country Distribution
+- Ratings Analysis
+- Release Year Trends
 - Top Directors
 
 ![Charts](powerbi/screenshots/charts.png.png)
@@ -266,40 +261,15 @@ Interactive charts include
 
 ## Interactive Filters
 
-Dashboard slicers allow users to filter by
+Users can filter by:
 
 - Country
-- Rating
-- Release Year
 - Genre
+- Rating
 - Type
+- Release Year
 
 ![Filters](powerbi/screenshots/filters.png)
-
----
-
-# 📌 Dashboard Features
-
-## Power BI
-
-- Interactive KPI Cards
-- Country-wise Analysis
-- Genre Analysis
-- Rating Analysis
-- Release Year Trends
-- Movie vs TV Show Comparison
-- Dynamic Filtering
-
----
-
-## Streamlit Dashboard
-
-- Interactive UI
-- Live Filtering
-- Search Functionality
-- Plotly Charts
-- Dataset Statistics
-- Real-time Visualization
 
 ---
 
@@ -309,7 +279,7 @@ Dataset
 
 Netflix Movies and TV Shows Dataset
 
-Includes
+Dataset contains
 
 - Movies
 - TV Shows
@@ -324,19 +294,44 @@ Includes
 
 ---
 
-# 🚀 How to Run the Project
+# 📈 Dashboard Features
+
+## Power BI
+
+- Interactive KPI Cards
+- Genre Analytics
+- Country-wise Analysis
+- Movie vs TV Show Comparison
+- Release Year Trends
+- Ratings Analysis
+- Dynamic Filters
+
+---
+
+## Streamlit
+
+- Interactive Dashboard
+- Search Functionality
+- Plotly Visualizations
+- Live Filtering
+- Dataset Statistics
+- User-Friendly Interface
+
+---
+
+# 🚀 Running the Project
 
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/netflix-data-pipeline.git
+git clone https://github.com/Shariq7427/netflix-data-pipeline.git
 
 cd netflix-data-pipeline
 ```
 
 ---
 
-## Install Dependencies
+## Install Requirements
 
 ```bash
 pip install -r requirements.txt
@@ -344,7 +339,7 @@ pip install -r requirements.txt
 
 ---
 
-## Run Spark Ingestion
+## Run Spark Data Ingestion
 
 ```bash
 python -m Spark.scripts.01_data_ingestion
@@ -352,7 +347,7 @@ python -m Spark.scripts.01_data_ingestion
 
 ---
 
-## Run Spark Transformation
+## Run Spark Data Transformation
 
 ```bash
 python -m Spark.scripts.02_data_transformation
@@ -382,6 +377,8 @@ Open
 http://localhost:8080
 ```
 
+Default Credentials
+
 Username
 
 ```
@@ -406,27 +403,27 @@ streamlit run dashboard/app.py
 
 # 📊 Business Insights
 
-The dashboard answers several business questions such as
+The dashboards answer important business questions such as:
 
-- Which country has the highest Netflix content?
-- Which genres dominate Netflix?
+- Which country produces the most Netflix content?
+- What are the most popular genres?
 - Movie vs TV Show distribution
-- Ratings analysis
+- Ratings distribution
 - Release year trends
 - Top contributing directors
 - Country-wise content production
 
 ---
 
-# 📌 Future Improvements
+# 🚀 Future Enhancements
 
-- Real-time Kafka Streaming
+- Real-Time Kafka Streaming
 - Spark Structured Streaming
-- Cloud Deployment (AWS/Azure/GCP)
-- Data Lake Integration
-- Machine Learning Recommendation System
-- CI/CD Pipeline
-- Automated Data Validation
+- Cloud Deployment (AWS / Azure / GCP)
+- Machine Learning Recommendation Engine
+- Automated CI/CD Pipeline
+- Data Validation Framework
+- Cloud Data Warehouse Integration
 
 ---
 
@@ -434,19 +431,25 @@ The dashboard answers several business questions such as
 
 ## Architecture
 
-![Architecture](images/architecture.png)
+![Architecture](images/arcitecture.png)
+
+---
+
+## Streamlit Dashboard
+
+![Live Dashboard](images/dashboard-preview1.png)
 
 ---
 
 ## Power BI Dashboard
 
-![Dashboard](powerbi/screenshots/dashboard_overview.png.png)
+![Dashboard Overview](powerbi/screenshots/dashboard_overview.png.png)
 
 ---
 
 ## KPI Cards
 
-![KPI](powerbi/screenshots/kpi_cards.png.png)
+![KPI Cards](powerbi/screenshots/kpi_cards.png.png)
 
 ---
 
@@ -462,27 +465,19 @@ The dashboard answers several business questions such as
 
 ---
 
-## Live Dashboard
-
-> *(Replace with your Streamlit dashboard screenshot.)*
-
-![Live Dashboard](dashboard/dashboard_preview.png)
-
----
-
 # 📄 License
 
-This project is developed for academic and educational purposes as part of the Master's Data Engineering coursework.
+This project was developed for academic purposes as part of the Master's in Data Engineering coursework.
 
 ---
 
-# ⭐ Acknowledgements
+# 🙏 Acknowledgements
 
-Special thanks to our course instructor and project team for their guidance and support throughout the development of this project.
+Special thanks to our course instructor and project team for their valuable guidance and support throughout the development of this project.
 
 ---
 
-## Developed By
+# 👨‍💻 Developed By
 
 **Mohammad Shariq Ali**
 
