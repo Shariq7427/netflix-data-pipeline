@@ -20,11 +20,20 @@ st.set_page_config(
 @st.cache_data
 def load_data():
 
-    base_dir = os.path.dirname(os.path.dirname(__file__))
-    file_path = os.path.join(base_dir, "data", "netflix_titles.csv")
+    # Project root directory
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+    # CSV file location
+    file_path = os.path.join(
+        base_dir,
+        "data",
+        "netflix_titles.csv.csv"
+    )
+
+    # Read dataset
     df = pd.read_csv(file_path)
 
+    # Fill missing values
     df["country"] = df["country"].fillna("Unknown")
     df["listed_in"] = df["listed_in"].fillna("Unknown")
     df["rating"] = df["rating"].fillna("Unknown")
@@ -33,6 +42,7 @@ def load_data():
     return df
 
 
+# Load dataframe
 df = load_data()
 
 # =====================================================
